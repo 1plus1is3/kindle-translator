@@ -4,3 +4,5 @@ Pillow
 opencv-python
 pyocr
 fpdf2
+python-dotenv
+requests
