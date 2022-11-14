@@ -3,7 +3,8 @@
 """
 import os
 import pyocr
-
+from os import path
+from constant import TESSERACT_PATH, OUTPUT_TXT_FOLDER
 from PIL import Image
 
 
@@ -33,18 +34,17 @@ class OCR:
         print('画像からテキストへの変換を行います')
         # 自分のOCRパスを設定する
         # 環境変数に設定しているのであれば以下2行は必要ない
-        path = 'D:/Tesseract-OCR/'
-        os.environ['PATH'] = os.environ['PATH'] + path
+        os.environ['PATH'] = os.environ['PATH'] + TESSERACT_PATH
 
         # tesseractの設定
-        pyocr.tesseract.TESSERACT_CMD = 'D:/Tesseract-OCR/tesseract.exe'
+        pyocr.tesseract.TESSERACT_CMD = path.join(TESSERACT_PATH, 'tesseract.exe')
         tools = pyocr.get_available_tools()
         tool = tools[0]
 
         file_name_txt = f'{file_name}.txt'
 
         # テキストファイルを出力するファイルパスを指定
-        txt_file_path = f'D:/KindlePDF/txt/{file_name}'
+        txt_file_path = path.join(OUTPUT_TXT_FOLDER, file_name)
         os.mkdir(txt_file_path)
         os.chdir(txt_file_path)
         print(f'{txt_file_path}にテキストファイルを保存します')

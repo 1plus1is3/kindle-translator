@@ -2,6 +2,7 @@
     kindle-translator
 """
 import requests
+from constant import DEEPL_API_KEY
 
 class Translate:
     """
@@ -25,8 +26,6 @@ class Translate:
             - なし
         """
         print('テキストファイルの翻訳を行います')
-        # XXXXXXの部分に自分のAPI Keyを入力
-        API_KEY:str = 'XXXXXX'
 
         # file_listに記載されているファイルを順番に開いて翻訳にかける
         for partial_file_name in file_list:
@@ -37,7 +36,7 @@ class Translate:
 
             # 英語から日本語に変換
             params = {
-                "auth_key": API_KEY,
+                "auth_key": DEEPL_API_KEY,
                 "text": txt,
                 "source_lang": 'EN',
                 "target_lang": 'JA'

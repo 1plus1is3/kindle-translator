@@ -2,6 +2,7 @@
     kindle-translator
 """
 from fpdf import FPDF
+from constant import FONT_PATH
 
 
 class PDFConverter:
@@ -25,11 +26,9 @@ class PDFConverter:
         # FPDF2のインスタンス化
         pdf = FPDF()
 
-        # 使用したいフォントのパスを指定(デフォルトでは游明朝・標準)
-        font_path = 'C:/Windows/Fonts/yumin.ttf'
         pdf.add_page()
 
-        pdf.add_font("yumin", fname=font_path, uni=True)
+        pdf.add_font("yumin", fname=FONT_PATH, uni=True)
         pdf.set_font('yumin', size=12)
 
         # テキストファイルを開いてPDF形式で書き込み
