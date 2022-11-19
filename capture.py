@@ -5,6 +5,9 @@ import os
 import time
 import cv2
 import pyautogui
+from constant import OUTPUT_IMG_FOLDER
+from os import path
+
 
 class Capture:
     """
@@ -31,7 +34,7 @@ class Capture:
         # 左上の座標を取得
         print("10秒以内に撮影したい範囲の左上にカーソルを合わせてください")
         time.sleep(10)
-        upper_left_x, upper_left_y= pyautogui.position()
+        upper_left_x, upper_left_y = pyautogui.position()
         print(f'左上の座標: {upper_left_x}, {upper_left_y}')
 
         # 右下の座標を取得
@@ -83,7 +86,7 @@ class Capture:
         time.sleep(10)
 
         # 画像の出力先となるフォルダパスを設定してフォルダを生成
-        img_file_path = f'D:/KindlePDF/image/{file_name}'
+        img_file_path = path.join(OUTPUT_IMG_FOLDER, file_name)
         os.mkdir(img_file_path)
 
         # 出力先フォルダに画像を出力していく
@@ -93,11 +96,11 @@ class Capture:
         # 最初のページの撮影
         png_name = 'picture_0.png'
         screen_shot = pyautogui.screenshot(region=(
-                x_1,
-                y_1,
-                x_2 - x_1,
-                y_2 - y_1
-            ))
+            x_1,
+            y_1,
+            x_2 - x_1,
+            y_2 - y_1
+        ))
         screen_shot.save(png_name)
 
         # ページ送りの方向(デフォルトは右)
